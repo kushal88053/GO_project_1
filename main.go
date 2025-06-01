@@ -104,11 +104,20 @@ func deleteMovie(w http.ResponseWriter, r *http.Request) {
 		"status":  "error",
 	})
 }
+
+func hello(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"message": "Hello, World!",
+		"status":  "success",
+	})
+}
 func main() {
 	r := mux.NewRouter()
 	movies = append(movies, Movie{ID: rand.Intn(100), Title: "Kushal The Geams Bond", Isbn: "438743", Director: &Director{Firstname: "John", Lastname: "Doe"}})
 	movies = append(movies, Movie{ID: rand.Intn(100), Title: " Kushal The ", Isbn: "438743", Director: &Director{Firstname: "Jane", Lastname: "Doe"}})
 
+	r.HandleFunc("/", hello).Methods("GET")
 	r.HandleFunc("/movies", getMovies).Methods("GET")
 	r.HandleFunc("/movies/{id}", getMovie).Methods("GET")
 	r.HandleFunc("/movies", addMovies).Methods("POST")
