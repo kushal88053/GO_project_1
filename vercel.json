@@ -1,13 +1,8 @@
 {
-    "functions": {
-        "api/index.go": {
-            "runtime": "vercel-go@0.3.0"
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "build": {
+        "env": {
+            "GO_BUILD_FLAGS": "-ldflags '-s -w'"
         }
-    },
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "/api/index.go"
-        }
-    ]
+    }
 }
