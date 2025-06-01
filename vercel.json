@@ -1,14 +1,13 @@
 {
-    "$schema": "https://openapi.vercel.sh/vercel.json",
-    "build": {
-        "env": {
-            "GO_BUILD_FLAGS": "-ldflags '-s -w'"
+    "functions": {
+        "api/index.go": {
+            "runtime": "go"
         }
     },
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/movie.exe"
+            "src": "/api/(.*)",
+            "dest": "/api/index.go"
         }
     ]
 }
